@@ -27,16 +27,17 @@ if __name__ == "__main__":
         if os.getenv("SHOTSTACK_HOST") is not None:
             apiUrl =  os.getenv("SHOTSTACK_HOST")
 
-        api_response = api_instance.probe(url)
+        try:
+            api_response = api_instance.probe(url)
 
-        #print(api_response['response'])
-
-        streams = api_response['response']['metadata']['streams']
-        
-        for stream in streams:
-            if stream['codec_type'] == "video":
-                print(f"Example settings for:  {api_response['response']['metadata']['format']['filename']}")
-                print(f"Width: {stream['width']}px")
-                print(f"Height: {stream['height']}px")
-                print(f"Framerate: {stream['r_frame_rate']} fps")
-                print(f"Duration: {stream['duration']} secs")
+            streams = api_response['response']['metadata']['streams']
+            
+            for stream in streams:
+                if stream['codec_type'] == "video":
+                    print(f"Example settings for:  {api_response['response']['metadata']['format']['filename']}")
+                    print(f"Width: {stream['width']}px")
+                    print(f"Height: {stream['height']}px")
+                    print(f"Framerate: {stream['r_frame_rate']} fps")
+                    print(f"Duration: {stream['duration']} secs")
+        except Exception as e:
+            print(f"Unable to resolve API call: {e}")
