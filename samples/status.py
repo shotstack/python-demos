@@ -27,18 +27,19 @@ if __name__ == "__main__":
         if os.getenv("SHOTSTACK_HOST") is not None:
             apiUrl =  os.getenv("SHOTSTACK_HOST")
 
-        api_response = api_instance.get_render(id, data=False, merged=True)
+        try:
+            api_response = api_instance.get_render(id, data=False, merged=True)
 
-        #print(api_response['response'])
+            status = api_response['response']['status']
+            url    = api_response['response']['url']
 
-        status = api_response['response']['status']
-        url    = api_response['response']['url']
+            print('Status: ' + status.upper() + '\n')
 
-        print('Status: ' + status.upper() + '\n')
-
-        if status == "done":
-            print(f">> Asset URL: {url}")
-        elif status == 'failed':
-            print(">> Something went wrong, rendering has terminated and will not continue.")
-        else:
-            print(">> Rendering in progress, please try again shortly.\n>> Note: Rendering may take up to 1 minute to complete."")
+            if status == "done":
+                print(f">> Asset URL: {url}")
+            elif status == 'failed':
+                print(">> Something went wrong, rendering has terminated and will not continue.")
+            else:
+                print(">> Rendering in progress, please try again shortly.\n>> Note: Rendering may take up to 1 minute to complete.")
+        except Exception as e:
+            print(f"Unable to resolve API call: {e}")
