@@ -12,7 +12,7 @@ from shotstack_sdk.model.edit        import Edit
 
 if __name__ == "__main__":
     configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/v1"
+        host = "https://api.shotstack.io/stage"
     )
 
     if os.getenv('SHOTSTACK_KEY') is None:
