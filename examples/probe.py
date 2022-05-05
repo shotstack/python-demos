@@ -5,9 +5,12 @@ import os
 from shotstack_sdk.api import edit_api
 
 if __name__ == "__main__":
-    configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/stage"
-    )
+    host = "https://api.shotstack.io/stage"
+
+    if os.getenv("SHOTSTACK_HOST") is not None:
+        host =  os.getenv("SHOTSTACK_HOST")
+
+    configuration = shotstack.Configuration(host = host)
 
     if os.getenv("SHOTSTACK_KEY") is None:
         sys.exit("API Key is required. Set using: export SHOTSTACK_KEY=your_key_here")  
@@ -21,12 +24,7 @@ if __name__ == "__main__":
 
         if url is None:
             sys.exit(">> Please provide the URL to a media file to inspect (i.e. python examples/probe.py https://github.com/shotstack/test-media/raw/main/captioning/scott-ko.mp4)\n")  
-
-        apiUrl = "https://api.shotstack.io/stage"
-
-        if os.getenv("SHOTSTACK_HOST") is not None:
-            apiUrl =  os.getenv("SHOTSTACK_HOST")
-
+            
         try:
             api_response = api_instance.probe(url)
 

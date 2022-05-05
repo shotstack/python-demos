@@ -10,9 +10,12 @@ from shotstack_sdk.model.output      import Output
 from shotstack_sdk.model.edit        import Edit
 
 if __name__ == "__main__":
-    configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/stage"
-    )
+    host = "https://api.shotstack.io/stage"
+
+    if os.getenv("SHOTSTACK_HOST") is not None:
+        host =  os.getenv("SHOTSTACK_HOST")
+
+    configuration = shotstack.Configuration(host = host)
 
     if os.getenv("SHOTSTACK_KEY") is None:
         sys.exit("API Key is required. Set using: export SHOTSTACK_KEY=your_key_here")  
@@ -60,11 +63,14 @@ if __name__ == "__main__":
             output   = output
         )
 
-        api_response = api_instance.post_render(edit)
+        try:
+            api_response = api_instance.post_render(edit)
 
-        message = api_response['response']['message']
-        id = api_response['response']['id']
-    
-        print("message\n")
-        print(">> Now check the progress of your render by running:")
-        print(f">> python examples/status.py {id}")
+            message = api_response['response']['message']
+            id = api_response['response']['id']
+        
+            print("message\n")
+            print(">> Now check the progress of your render by running:")
+            print(f">> python examples/status.py {id}")
+        except Exception as e:
+            print(f"Unable to resolve API call: {e}")
