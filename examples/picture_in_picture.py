@@ -11,7 +11,7 @@ from shotstack_sdk.model.video_asset import VideoAsset
 
 if __name__ == "__main__":
     configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/v1"
+        host = "https://api.shotstack.io/stage"
     )
 
     if os.getenv("SHOTSTACK_KEY") is None:

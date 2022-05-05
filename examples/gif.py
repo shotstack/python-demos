@@ -13,7 +13,7 @@ from shotstack_sdk.model.shotstack_destination import ShotstackDestination
 
 if __name__ == "__main__":
     configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/v1"
+        host = "https://api.shotstack.io/stage"
     )
 
     if os.getenv("SHOTSTACK_KEY") is None:
