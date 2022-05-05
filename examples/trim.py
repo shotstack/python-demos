@@ -10,9 +10,12 @@ from shotstack_sdk.model.edit        import Edit
 from shotstack_sdk.model.video_asset import VideoAsset
 
 if __name__ == "__main__":
-    configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/stage"
-    )
+    host = "https://api.shotstack.io/stage"
+
+    if os.getenv("SHOTSTACK_HOST") is not None:
+        host =  os.getenv("SHOTSTACK_HOST")
+
+    configuration = shotstack.Configuration(host = host)
 
     if os.getenv("SHOTSTACK_KEY") is None:
         sys.exit("API Key is required. Set using: export SHOTSTACK_KEY=your_key_here")  

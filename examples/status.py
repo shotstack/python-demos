@@ -5,9 +5,12 @@ import os
 from shotstack_sdk.api import edit_api
 
 if __name__ == "__main__":
-    configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/stage"
-    )
+    host = "https://api.shotstack.io/stage"
+
+    if os.getenv("SHOTSTACK_HOST") is not None:
+        host =  os.getenv("SHOTSTACK_HOST")
+
+    configuration = shotstack.Configuration(host = host)
 
     if os.getenv("SHOTSTACK_KEY") is None:
         sys.exit("API Key is required. Set using: export SHOTSTACK_KEY=your_key_here")  
@@ -21,11 +24,6 @@ if __name__ == "__main__":
 
         if id is None:
             sys.exit(">> Please provide the UUID of the render task (i.e. python examples/status.py 2abd5c11-0f3d-4c6d-ba20-235fc9b8e8b7)\n")  
-
-        apiUrl = "https://api.shotstack.io/stage"
-
-        if os.getenv("SHOTSTACK_HOST") is not None:
-            apiUrl =  os.getenv("SHOTSTACK_HOST")
 
         try:
             api_response = api_instance.get_render(id, data=False, merged=True)

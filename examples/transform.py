@@ -14,9 +14,12 @@ from shotstack_sdk.model.flip_transformation    import FlipTransformation
 from shotstack_sdk.model.transformation         import Transformation
 
 if __name__ == "__main__":
-    configuration = shotstack.Configuration(
-        host = "https://api.shotstack.io/stage"
-    )
+    host = "https://api.shotstack.io/stage"
+
+    if os.getenv("SHOTSTACK_HOST") is not None:
+        host =  os.getenv("SHOTSTACK_HOST")
+
+    configuration = shotstack.Configuration(host = host)
 
     if os.getenv("SHOTSTACK_KEY") is None:
         sys.exit("API Key is required. Set using: export SHOTSTACK_KEY=your_key_here")  
