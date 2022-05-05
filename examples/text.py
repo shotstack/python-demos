@@ -63,11 +63,14 @@ if __name__ == "__main__":
             output   = output
         )
 
-        api_response = api_instance.post_render(edit)
+        try:
+            api_response = api_instance.post_render(edit)
 
-        message = api_response['response']['message']
-        id = api_response['response']['id']
-    
-        print("message\n")
-        print(">> Now check the progress of your render by running:")
-        print(f">> python examples/status.py {id}")
+            message = api_response['response']['message']
+            id = api_response['response']['id']
+        
+            print("message\n")
+            print(">> Now check the progress of your render by running:")
+            print(f">> python examples/status.py {id}")
+        except Exception as e:
+            print(f"Unable to resolve API call: {e}")
