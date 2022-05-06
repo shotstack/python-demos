@@ -98,7 +98,7 @@ if __name__ == "__main__":
             message = api_response['response']['message']
             id = api_response['response']['id']
         
-            print("message\n")
+            print(f"{message}\n")
             print(">> Now check the progress of your render by running:")
             print(f">> python examples/status.py {id}")
         except Exception as e:
