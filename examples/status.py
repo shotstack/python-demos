@@ -29,11 +29,11 @@ if __name__ == "__main__":
             api_response = api_instance.get_render(id, data=False, merged=True)
 
             status = api_response['response']['status']
-            url    = api_response['response']['url']
 
             print('Status: ' + status.upper() + '\n')
 
             if status == "done":
+                url = api_response['response']['url']
                 print(f">> Asset URL: {url}")
             elif status == 'failed':
                 print(">> Something went wrong, rendering has terminated and will not continue.")
