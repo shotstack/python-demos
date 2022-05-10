@@ -28,15 +28,10 @@ if __name__ == "__main__":
         try:
             api_response = api_instance.get_asset(id)
 
-            status = api_response['response']['status']
+            data = api_response['data']
 
-            print(f"Status: {status.upper()}\n")
-
-            if status == "failed":
-                print(">> Something went wrong, rendering has terminated and will not continue.")
-            else:
-                print(f">> Asset CDN URL: {api_response['response']['attributes']['url']}")
-                print(f">> Asset ID:  {api_response['response']['attributes']['id']}")
-                print(f">> Render ID:  {api_response['response']['attributes']['renderId']}")
+            print(f">> Asset CDN URL: {data['attributes']['url']}")
+            print(f">> Asset ID:  {data['attributes']['id']}")
+            print(f">> Render ID:  {data['attributes']['render_id']}")
         except Exception as e:
             print(f"Unable to resolve API call: {e}")
