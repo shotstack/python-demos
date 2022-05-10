@@ -5,10 +5,10 @@ import os
 from shotstack_sdk.api import serve_api
 
 if __name__ == "__main__":
-    host = "https://api.shotstack.io/stage"
+    host = "https://api.shotstack.io/serve/stage"
 
-    if os.getenv("SHOTSTACK_HOST") is not None:
-        host =  os.getenv("SHOTSTACK_HOST")
+    if os.getenv("SHOTSTACK_SERVE_HOST") is not None:
+        host =  os.getenv("SHOTSTACK_SERVE_HOST")
 
     configuration = shotstack.Configuration(host = host)
 
