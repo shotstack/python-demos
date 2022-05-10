@@ -30,8 +30,11 @@ if __name__ == "__main__":
 
             data = api_response['data']
 
-            print(f">> Asset CDN URL: {data['attributes']['url']}")
-            print(f">> Asset ID:  {data['attributes']['id']}")
-            print(f">> Render ID:  {data['attributes']['render_id']}")
+            if data['attributes']['status'] == "failed":
+                print(">> Something went wrong, asset could not be copied.")
+            else:
+                print(f">> Asset CDN URL: {data['attributes']['url']}")
+                print(f">> Asset ID:  {data['attributes']['id']}")
+                print(f">> Render ID:  {data['attributes']['render_id']}")
         except Exception as e:
             print(f"Unable to resolve API call: {e}")
