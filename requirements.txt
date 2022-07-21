@@ -1,1 +1,1 @@
-shotstack_sdk==0.0.1
+shotstack_sdk==0.2.5
