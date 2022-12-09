@@ -36,6 +36,14 @@
 - **gif.py** -
     Create an animated gif that plays once.
 
+### Template examples
+
+- **templates/create.py** -
+    Save an edit as a re-usable template with placeholders.
+
+- **templates/render.py** -
+    Render a template using merge fields to replace placeholders.
+
 ### Polling example
 
 - **status.py** -
@@ -56,6 +64,9 @@
 
 - **serve-api/destination.py** -
     Shows how to exclude a render from being sent to the Shotstack hosting destination.
+
+- **mux.py** -
+    Sends a rendered video to Mux hosting and excludes it from Shotstack. Requires a Mux account.
 
 ### Installation
 
