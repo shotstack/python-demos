@@ -33,23 +33,23 @@ if __name__ == "__main__":
             "https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/examples/images/pexels/pexels-photo-752036.jpeg"
         ]
 
-        clips  = []
-        start  = 0.0
+        clips = []
+        start = 0.0
         length = 1.5
 
         soundtrack = Soundtrack(
-            src     = "https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/music/gangsta.mp3",
-            effect  = "fadeInFadeOut"
+            src = "https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/music/gangsta.mp3",
+            effect = "fadeInFadeOut"
         )
 
         for image in images:
             imageAsset = ImageAsset(src = image)
 
-            clip    = Clip(
-                asset   = imageAsset,
-                start   = start,
-                length  = length,
-                effect  = "zoomIn"
+            clip = Clip(
+                asset = imageAsset,
+                start = start,
+                length = length,
+                effect = "zoomIn"
             )
 
             start = start + length
@@ -60,19 +60,19 @@ if __name__ == "__main__":
         timeline = Timeline(
             background = "#000000",
             soundtrack = soundtrack,
-            tracks     = [track]
+            tracks = [track]
         )
 
         output = Output(
-            format      = "gif",
-            resolution  = "preview",
-            fps         = 12.0,
-            repeat      = False
+            format = "gif",
+            resolution = "preview",
+            fps = 12,
+            repeat = False
         )
 
         edit = Edit(
             timeline = timeline,
-            output   = output
+            output = output
         )
 
         try:
