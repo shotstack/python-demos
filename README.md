@@ -73,7 +73,7 @@
 Install the required dependencies including the [Shotstack Python SDK](https://www.npmjs.com/package/shotstack-sdk)
 
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Set your API key
