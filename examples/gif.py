@@ -66,7 +66,7 @@ if __name__ == "__main__":
         output = Output(
             format = "gif",
             resolution = "preview",
-            fps = 12,
+            fps = 12.0,
             repeat = False
         )
 
