@@ -23,7 +23,9 @@ if __name__ == "__main__":
         id = sys.argv[1]
 
         if id is None:
-            sys.exit(">> Please provide the UUID of the render task (i.e. python examples/status.py 2abd5c11-0f3d-4c6d-ba20-235fc9b8e8b7)\n")  
+            sys.exit(">> Please provide the UUID of the render task (i.e. python examples/status.py 2abd5c11-0f3d-4c6d-ba20-235fc9b8e8b7)\n")
+
+        api_response = api_instance.get_render(id, data=False, merged=True)
 
         try:
             api_response = api_instance.get_render(id, data=False, merged=True)
